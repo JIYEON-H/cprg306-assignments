@@ -13,17 +13,7 @@ export default function NewEvent() {
   };
 
   const handleQuantityChange = (event) => {
-    let newValue = parseInt(event.target.value);
-
-    if (isNaN(newValue)) {
-      alert("Quantity must be a number and must be between 1 and 99");
-      setQuantity("");
-    } else if (newValue < 1 || newValue > 99) {
-      alert("Quantity must be between 1 and 99");
-      setQuantity("");
-    } else if (0 < newValue || newValue < 100) {
-      setQuantity(newValue);
-    }
+    setQuantity(event.target.value);
   };
 
   const handleCategoryChange = (event) => {
@@ -39,28 +29,27 @@ export default function NewEvent() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (quantity != "") {
-      const newEvent = {
-        name,
-        quantity,
-        category,
-      };
+    const newEvent = {
+      name,
+      quantity,
+      category,
+    };
 
-      console.log(newEvent);
-      setCreated((current) => !current);
-      alert(
-        `Added item: ${newEvent.name}, quantity: ${newEvent.quantity}, category: ${newEvent.category}`
-      );
-      resetForm();
-    } else {
-      alert("Quantity is required");
-    }
+    console.log(newEvent);
+    setCreated((current) => !current);
+    alert(
+      `Added item: ${newEvent.name}, quantity: ${newEvent.quantity}, category: ${newEvent.category}`
+    );
+    resetForm();
   };
 
   return (
     <main>
       <div className='flex items-center justify-center mt-14'>
-        <form className='p-12 border rounded-lg mx-auto bg-orange-600'>
+        <form
+          className='p-12 border rounded-lg mx-auto bg-orange-600'
+          onSubmit={handleSubmit}
+        >
           <div>
             <label htmlFor='username' className='block text-white'>
               Name
@@ -118,7 +107,6 @@ export default function NewEvent() {
             <button
               type='submit'
               className='block border rounded-lg mt-4 bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 w-56'
-              onClick={handleSubmit}
             >
               Add Item
             </button>
