@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Item from "./item";
 import itemData from "./item.json";
-import SortBUtton from "./sort-button";
+import SortButton from "./sort-button";
 
 export default function ItemList() {
   const [sortBy, setSortBy] = useState("name");
@@ -31,12 +31,20 @@ export default function ItemList() {
   return (
     <>
       <div>
-        <SortBUtton currentSort={sortBy} onClick={() => setSortBy("name")}>
+        <SortButton
+          currentSort={sortBy}
+          onClick={() => setSortBy("name")}
+          sortType='name'
+        >
           Name
-        </SortBUtton>
-        <SortBUtton currentSort={sortBy} onClick={() => setSortBy("category")}>
+        </SortButton>
+        <SortButton
+          currentSort={sortBy}
+          onClick={() => setSortBy("category")}
+          sortType='category'
+        >
           Category
-        </SortBUtton>
+        </SortButton>
       </div>
       <div>
         {items.map((item) => (
