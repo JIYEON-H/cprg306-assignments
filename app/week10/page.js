@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useUserAuth } from "./_utils/auth-context";
+import Link from "next/link";
 
 export default function Page() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -32,7 +32,9 @@ export default function Page() {
       <section>
         {user ? (
           <div>
-            <p>Welcome, {user.displayName}</p>
+            <p>
+              Welcome, {user.displayName} {user.uid}
+            </p>
             <img
               src={user.photoURL}
               alt={user.displayName}
@@ -45,7 +47,7 @@ export default function Page() {
               Sign out
             </button>
             <div>
-              <Link href='/week8/shopping-list'>
+              <Link href='/week10/shopping-list'>
                 Continue to your Shopping List
               </Link>
             </div>
